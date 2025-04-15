@@ -1,6 +1,6 @@
 import 'dart:io';
 
-Voidm main() {
+Void main() {
   int marks;
   stdout.write("Enter Marks to check grade:");
 
