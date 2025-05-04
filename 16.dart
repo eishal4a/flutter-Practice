@@ -2,7 +2,7 @@ import 'dart:io';
 
 class Student {
   String name;
-  int marks[];
+  List<int> marks;
   int totalMarks = 0;
   String grade = '';
 
@@ -24,13 +24,16 @@ class Student {
 
   void displayReportCard() {
     print('\n--- Report Card ---');
+    print('Roll No: CU-4265');
+    print('Name: Eishal');
+    print('Subject: Mobile Application Development (LA)');
     print('Student Name: $name');
     for (int i = 0; i < marks.length; i++) {
       print('Subject ${i + 1} Marks: ${marks[i]}');
     }
     print('Total Marks: $totalMarks');
     print('Grade: $grade');
-    print('-------------------\n');
+    print('-------------------');
   }
 }
 
