@@ -2,7 +2,7 @@ import 'dart:io';
 
 class Student {
   String name;
-  List<int> marks;
+  int marks[];
   int totalMarks = 0;
   String grade = '';
 
