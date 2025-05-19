@@ -55,3 +55,26 @@ class _FakeHackingHomePageState extends State<FakeHackingHomePage> {
     });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView.builder(
+          itemCount: outputLines.length,
+          itemBuilder: (context, i) {
+            return Text(
+              outputLines[i],
+              style: TextStyle(
+                color: Colors.greenAccent,
+                fontFamily: 'Courier',
+                fontSize: 16,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
