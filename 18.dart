@@ -25,3 +25,33 @@ class FakeHackingHomePage extends StatefulWidget {
 class _FakeHackingHomePageState extends State<FakeHackingHomePage> {
   List<String> outputLines = [];
   int index = 0;
+
+  List<String> fakeMessages = [
+    "Initializing system...",
+    "Connecting to secure server...",
+    "Bypassing firewall...",
+    "Access granted ✅",
+    "Downloading confidential files...",
+    "Extracting password hashes...",
+    "Decrypting data...",
+    "Uploading to cloud...",
+    "Wiping traces...",
+    "Operation complete.",
+    ">> Press BACK to exit <<"
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(milliseconds: 700), (timer) {
+      if (index < fakeMessages.length) {
+        setState(() {
+          outputLines.add(fakeMessages[index]);
+          index++;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
