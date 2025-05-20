@@ -44,4 +44,29 @@ void viewTasks(List<String> list) {
 
 void addTask(List<String> list) {
   stdout.write('\nEnter the task: ');
-  String? task
+  String? task = stdin.readLineSync();
+  if (task != null && task.trim().isNotEmpty) {
+    list.add(task.trim());
+    print('Task added!');
+  } else {
+    print('Invalid input. Task not added.');
+  }
+}
+
+void deleteTask(List<String> list) {
+  if (list.isEmpty) {
+    print('\nNo tasks to delete.');
+    return;
+  }
+
+  viewTasks(list);
+  stdout.write('\nEnter the task number to delete: ');
+  String? input = stdin.readLineSync();
+  int? index = int.tryParse(input ?? '');
+
+  if (index != null && index > 0 && index <= list.length) {
+    print('Deleted: ${list.removeAt(index - 1)}');
+  } else {
+    print('Invalid task number.');
+  }
+}
