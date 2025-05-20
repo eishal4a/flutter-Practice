@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(TodoApp());
+void main() => runApp(const TodoApp());
 
 class TodoApp extends StatelessWidget {
+  const TodoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'To-Do List',
+      title: 'Elegant To-Do',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        fontFamily: 'Roboto',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        useMaterial3: true,
       ),
-      home: TodoHomePage(),
+      home: const TodoHomePage(),
     );
   }
 }
 
 class TodoHomePage extends StatefulWidget {
+  const TodoHomePage({super.key});
+
   @override
-  _TodoHomePageState createState() => _TodoHomePageState();
+  State<TodoHomePage> createState() => _TodoHomePageState();
 }
 
 class _TodoHomePageState extends State<TodoHomePage> {
@@ -25,7 +32,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
   final TextEditingController _controller = TextEditingController();
 
   void _addTask() {
-    String text = _controller.text.trim();
+    final text = _controller.text.trim();
     if (text.isNotEmpty) {
       setState(() {
         _tasks.add(text);
@@ -42,39 +49,88 @@ class _TodoHomePageState extends State<TodoHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: const Color(0xFFF3F4F6),
       appBar: AppBar(
-        title: Text('To-Do List'),
+        backgroundColor: const LinearGradient(
+          colors: [Colors.deepPurple, Colors.indigo],
+        ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+        title: const Text(
+          '📝 Elegant To-Do',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
+        elevation: 2,
+        shadowColor: Colors.black54,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                labelText: 'Enter task',
-                border: OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: _addTask,
-                ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
-              onSubmitted: (_) => _addTask(),
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  hintText: 'Add a new task...',
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.add_circle, color: Colors.deepPurple),
+                    onPressed: _addTask,
+                  ),
+                ),
+                onSubmitted: (_) => _addTask(),
+              ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: _tasks.isEmpty
-                  ? Center(child: Text('No tasks yet.'))
+                  ? Center(
+                      child: Text(
+                        '✨ Add your first task!',
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    )
                   : ListView.builder(
                       itemCount: _tasks.length,
                       itemBuilder: (context, index) {
-                        return Card(
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                          margin: const EdgeInsets.symmetric(vertical: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 6,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
                           child: ListTile(
-                            title: Text(_tasks[index]),
+                            title: Text(
+                              _tasks[index],
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                             trailing: IconButton(
-                              icon: Icon(Icons.delete, color: Colors.red),
+                              icon: const Icon(Icons.delete, color: Colors.redAccent),
                               onPressed: () => _deleteTask(index),
                             ),
                           ),
