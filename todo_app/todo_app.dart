@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 void main() => runApp(TodoApp());
 
 class TodoApp extends StatelessWidget {
+  const TodoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class TodoApp extends StatelessWidget {
 }
 
 class TodoHomePage extends StatefulWidget {
+  const TodoHomePage({super.key});
+
   @override
   _TodoHomePageState createState() => _TodoHomePageState();
 }
