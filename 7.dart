@@ -1,11 +1,17 @@
-import 'dart:io';
+class Person {
+  String _name = '';
+
+  String get name => _name;
+
+  set name(String value) {
+    if (value.isNotEmpty) {
+      _name = value;
+    }
+  }
+}
 
 void main() {
-  int f;
-  double c;
-  print('Enter temperature in Fahreheit:');
-  f = int.parse(stdin.readLineSync()!);
-
-  c = (f - 32) * 5 / 9;
-  print('Temperature in Celsius is $c');
+  Person p = Person();
+  p.name = 'Emma';
+  print('Person Name: ${p.name}');
 }

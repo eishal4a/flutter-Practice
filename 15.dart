@@ -4,5 +4,5 @@ void main() {
 }
 
 void greet(String a) {
-  print("Welcome!");
+  print("Welcome!"+a);
 }

@@ -1,29 +1,29 @@
-import 'dart:io';
+abstract class Shape {
+  double area();
+}
+
+class Circle extends Shape {
+  double radius;
+
+  Circle(this.radius);
+
+  @override
+  double area() => pi * radius * radius;
+}
+
+class Square extends Shape {
+  double side;
+
+  Square(this.side);
+
+  @override
+  double area() => side * side;
+}
 
 void main() {
-  int calculus, OOP, Database;
-  double average;
-  print("Enter your marks in Calculus: ");
-  calculus = int.parse(stdin.readLineSync()!);
-  print("Enter your marks in OOP: ");
-  OOP = int.parse(stdin.readLineSync()!);
-  print("Enter your marks in Database: ");
-  Database = int.parse(stdin.readLineSync()!);
-  average = (calculus + OOP + Database) / 3.0;
-  print("Your average is: $average");
-  if (average >= 90) {
-    print("A+ grade");
-  }
-  else if (average >= 80) {
-    print("A grade");
-  }
-  else if (average >= 70) {
-    print("B grade");
-  }
-  else if (average >= 60) {
-    print("C grade");
-  }
-  else {
-    print("Fail");
-  }
+  Shape c = Circle(4.0);
+  Shape s = Square(3.0);
+
+  print('Circle Area: ${c.area()}');
+  print('Square Area: ${s.area()}');
 }

@@ -1,21 +1,11 @@
-import 'dart:io';
-
 void main() {
-  stdout.write('Enter your name:');
-  String? name = stdin.readLineSync();
+  List<int> numbers = [1, 2, 2, 3, 4, 4, 5];
 
-  stdout.write('Enter your age:');
-  int age = int.parse(stdin.readLineSync()!);
+  print("Original List: $numbers");
 
-  stdout.write('Enter your height in feet:');
-  double height = double.parse(stdin.readLineSync()!);
+  // Convert list to set to remove duplicates
+  Set<int> uniqueSet = numbers.toSet();
+  List<int> uniqueList = uniqueSet.toList();
 
-  stdout.write('Enter your weight(in kg):');
-  double weight = double.parse(stdin.readLineSync()!);
-
-  print('\n--- User Information ---');
-  print('Name: $name');
-  print('Name: $age');
-  print('Name: $height feet');
-  print('Name: $weight kg');
+  print("List after removing duplicates: $uniqueList");
 }

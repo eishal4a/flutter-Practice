@@ -1,14 +1,15 @@
-import 'dart:io';
+abstract class Vehicle {
+  void start();
+}
+
+class Bike extends Vehicle {
+  @override
+  void start() {
+    print('Bike started');
+  }
+}
 
 void main() {
-
-  stdout.write("Enter value 1:");
-  int value1 = int.parse(stdin.readLineSync()!);
-  stdout.write("Enter value 2:");
-  int value2 = int.parse(stdin.readLineSync()!);
-  int Result = Multiplication(value1, value2);
-  print("Result= $Result");
+  Bike b = Bike();
+  b.start();
 }
-int Multiplication(int x, int y) {
-    return x * y;
-  }
